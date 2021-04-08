@@ -4,7 +4,7 @@
       <h2>User info</h2>
       <%= render 'users/info', user: @book.user %>
       <h2 class="mt-3">New book</h2>
-      <%= render 'form', book: @book_new %>
+      <%= render 'books/form', book: Book.new %>
     </div>
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
@@ -23,18 +23,8 @@
          <% end %>
         </tr>
       </table>
-      <div class="comment">
-        <% @book.book_commments.each do |book_comment| %>
-        <p><%= attachment_image_tag(book_commnet.user, :profile_image, :fill, 100, 100, fallback: "no-image-icon.jpg") %></p>
-        <%= book_commnet.user.name %>
-        <%= book_commnet.comment %>
-        <% end %>
-      </div>
-      <div class="new-comment">
-        <%= form_with(model:[@book,@book_commnet], local: true) do |f| %>
-        <%= f.text_area :comment, rows:'5' %>
-        <%= f.submit "Create Commnet" %>
-        <% end %>
+            <%= render 'books/comment', book: @book,book_comment: @book_comment%>
+
       </div>
     </div>
   </div>
